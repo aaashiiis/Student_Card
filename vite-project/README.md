@@ -7,7 +7,7 @@ A React app showcasing a student directory with reusable components, nested list
 
 ## Links
 - **GitHub Repository:** https://github.com/aaashiiis/Student_Card.git
-- **Live Website:** [your-deployment-link]
+- **Live Website:** https://jazzy-froyo-55819d.netlify.app
 
 ## Run Locally
 1. Clone the repository
