@@ -1,16 +1,38 @@
 // App.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import StudentCard from './components/StudentCard';
 // 💡 CHANGE THIS LINE:
-import { activeStudents, alumni } from './data.js';
-import './App.css'; 
+import { activeStudents as initialActiveStudents, alumni as initialAlumni } from './data.js';
+import './App.css';
 
 // ... rest of App component
 const App = () => {
+  const [activeStudents, setActiveStudents] = useState(initialActiveStudents);
+  const [alumni] = useState(initialAlumni); // Alumni not changing for now
+  const [formData, setFormData] = useState({ name: '', age: '', grade: '', imageUrl: '' });
+
   // --- Directory Statistics Calculation ---
   const totalStudents = activeStudents.length + alumni.length;
   const activeCount = activeStudents.length;
   const alumniCount = alumni.length;
+
+  // Function to add a new student
+  const handleAddStudent = (e) => {
+    e.preventDefault();
+    const newStudent = {
+      rollNumber: `FS-${String(activeStudents.length + 1).padStart(3, '0')}`,
+      name: formData.name,
+      course: 'Full Stack Development',
+      email: `${formData.name.toLowerCase().replace(/\s+/g, '.')}@class.com`,
+      skills: [],
+      isActive: true,
+      age: parseInt(formData.age),
+      grade: formData.grade,
+      imageUrl: formData.imageUrl || 'https://via.placeholder.com/150',
+    };
+    setActiveStudents([...activeStudents, newStudent]);
+    setFormData({ name: '', age: '', grade: '', imageUrl: '' });
+  };
 
   // Function to find the most common skill
   const getMostCommonSkill = () => {
@@ -47,6 +69,41 @@ const App = () => {
         <h1>Student Directory 2025</h1>
         <h2>Full Stack Development Batch</h2>
       </header>
+
+      {/* Add Student Form Section */}
+      <section className="add-student-section">
+        <h3>Add New Student</h3>
+        <form className="add-student-form" onSubmit={handleAddStudent}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+          />
+          <input
+            type="number"
+            placeholder="Age"
+            value={formData.age}
+            onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Grade"
+            value={formData.grade}
+            onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+            required
+          />
+          <input
+            type="url"
+            placeholder="Image URL"
+            value={formData.imageUrl}
+            onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+          />
+          <button type="submit">Add Student</button>
+        </form>
+      </section>
 
       {/* 2. Directory Statistics Section */}
       <section className="statistics-section">

@@ -43,6 +43,9 @@ export const alumni = [
     email: 'eva.m@alumni.com',
     skills: ['JavaScript', 'jQuery', 'PHP'],
     isActive: false,
+    age: 25,
+    grade: 'B',
+    imageUrl: 'https://via.placeholder.com/150',
   },
   {
     rollNumber: 'FS-A02',
@@ -51,6 +54,9 @@ export const alumni = [
     email: 'frank.c@alumni.com',
     skills: ['Java', 'Spring Boot', 'MySQL'],
     isActive: false,
+    age: 26,
+    grade: 'A-',
+    imageUrl: 'https://via.placeholder.com/150',
   },
   {
     rollNumber: 'FS-A03',
@@ -59,5 +65,8 @@ export const alumni = [
     email: 'grace.k@alumni.com',
     skills: ['React', 'JavaScript', 'Node.js', 'Express'],
     isActive: false,
+    age: 24,
+    grade: 'A',
+    imageUrl: 'https://via.placeholder.com/150',
   },
 ];
